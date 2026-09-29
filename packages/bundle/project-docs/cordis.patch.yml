@@ -1,0 +1,66 @@
+- id: sdk-app-startup
+  config:
+    profile: project-docs
+
+- id: system-prompt
+  config:
+    includeHarnessIdentity: false
+    includeRuntimeContext: false
+    personaPrefix: !!js process.env.DSH_SYSTEM_PROMPT
+
+- id: deepseek-llm-api-extensions
+  disabled: true
+
+- id: session-log-deepseek
+  disabled: true
+
+- id: plugin-package-inventory-deepseek
+  disabled: true
+
+- id: llm-deepseek
+  disabled: true
+
+- id: sandbox
+  disabled: true
+
+- id: sandbox-policy
+  disabled: true
+
+- id: subprocess
+  disabled: true
+
+- id: pty
+  disabled: true
+
+- id: terminal-bash
+  disabled: true
+
+- id: terminal-pwsh
+  disabled: true
+
+- id: persistent-bash
+  disabled: true
+
+- id: persistent-pwsh
+  disabled: true
+
+- id: mcp-resources
+  disabled: true
+
+- insert:
+    - id: llm-pi-ai
+      name: '@deepseek-ai/dsh-llm-pi-ai'
+      config:
+        providers:
+          google:
+            apiKeyEnv: GEMINI_API_KEY
+            models:
+              - id: !!js process.env.GEMINI_MODEL || 'gemini-3.6-flash'
+
+    - id: mcp-project-docs
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: project_docs
+        transport: streamable-http
+        url: !!js process.env.MCP_URL
+        failOnStartupError: true
