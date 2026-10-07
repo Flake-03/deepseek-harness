@@ -1,12 +1,9 @@
+# DocMind layers over sdk-minimal. Rows below follow sdk-minimal's order.
+# Unmentioned rows are requested runtime plugins or their required services.
+
 - id: sdk-app-startup
   config:
-    profile: project-docs
-
-- id: system-prompt
-  config:
-    includeHarnessIdentity: false
-    includeRuntimeContext: false
-    personaPrefix: !!js process.env.DSH_SYSTEM_PROMPT
+    profile: docmind
 
 - id: deepseek-llm-api-extensions
   disabled: true
@@ -23,28 +20,34 @@
 - id: sandbox
   disabled: true
 
-- id: sandbox-policy
-  disabled: true
-
-- id: subprocess
-  disabled: true
-
-- id: pty
-  disabled: true
-
-- id: terminal-bash
-  disabled: true
-
 - id: terminal-pwsh
   disabled: true
 
-- id: persistent-bash
+- id: timer
+  disabled: true
+
+- id: session-title
+  disabled: true
+
+- id: system-prompt
+  config:
+    includeHarnessIdentity: false
+    includeRuntimeContext: false
+    personaPrefix: !!js process.env.DSH_SYSTEM_PROMPT ?? 'You are DocMind, a helpful project documentation assistant.'
+
+- id: mcp-resources
+  disabled: true
+
+- id: llm-retry
+  disabled: true
+
+- id: jobs
   disabled: true
 
 - id: persistent-pwsh
   disabled: true
 
-- id: mcp-resources
+- id: sessions
   disabled: true
 
 - insert:
@@ -54,13 +57,11 @@
         providers:
           google:
             apiKeyEnv: GEMINI_API_KEY
-            models:
-              - id: !!js process.env.GEMINI_MODEL || 'gemini-3.6-flash'
 
-    - id: mcp-project-docs
+    - id: mcp-docmind
       name: '@deepseek-ai/dsh-mcp-client'
       config:
-        serverName: project_docs
+        serverName: docmind
         transport: streamable-http
         url: !!js process.env.MCP_URL
         failOnStartupError: true

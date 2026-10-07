@@ -1,6 +1,6 @@
 {
-  "name": "@deepseek-ai/dsh-project-docs",
-  "description": "The project documentation agent profile bundle",
+  "name": "@deepseek-ai/dsh-docmind",
+  "description": "The DocMind agent profile bundle",
   "version": "0.1.0",
   "private": true,
   "type": "module",

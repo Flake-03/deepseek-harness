@@ -192,8 +192,8 @@ export const PROFILE_TEMPLATES: Record<string, ProfileTemplate> = {
   'sdk-minimal': {
     bundles: ['@deepseek-ai/dsh-sdk-minimal'],
   },
-  'project-docs': {
-    bundles: ['@deepseek-ai/dsh-sdk-minimal', '@deepseek-ai/dsh-project-docs'],
+  docmind: {
+    bundles: ['@deepseek-ai/dsh-sdk-minimal', '@deepseek-ai/dsh-docmind'],
   },
 }
 
