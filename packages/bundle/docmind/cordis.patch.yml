@@ -38,9 +38,6 @@
 - id: mcp-resources
   disabled: true
 
-- id: llm-retry
-  disabled: true
-
 - id: jobs
   disabled: true
 
@@ -57,6 +54,10 @@
         providers:
           google:
             apiKeyEnv: GEMINI_API_KEY
+            retryPolicy:
+              mode: normal
+              backoff:
+                maxDelayMs: 60000
 
     - id: mcp-docmind
       name: '@deepseek-ai/dsh-mcp-client'
